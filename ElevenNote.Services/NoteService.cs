@@ -42,7 +42,7 @@ namespace ElevenNote.Services
                 var entity =
                     ctx
                         .Notes
-                        .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+                        .Single(e => e.NoteId == noteId);
 
                 ctx.Notes.Remove(entity);
 
@@ -76,15 +76,15 @@ namespace ElevenNote.Services
                 var query =
                     ctx
                         .Notes
-                        .Where(e => e.OwnerId == _userId)
+                        .Where(note => note.OwnerId == _userId)
                         .Select(
-                            e =>
+                            note =>
                                 new NoteListItem
                                 {
-                                    NoteId = e.NoteId,
-                                    Title = e.Title,
-                                    IsStarred = e.IsStarred,
-                                    CreatedUtc = e.CreatedUtc
+                                    NoteId = note.NoteId,
+                                    Title = note.Title,
+                                    IsStarred = note.IsStarred,
+                                    CreatedUtc = note.CreatedUtc
                                 }
                         );
 

@@ -29,5 +29,7 @@ namespace ElevenNote.Data
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
+
+        public override string ToString() => $"Note {NoteId} is titled {Title} and has the content {Content}";
     }
 }
